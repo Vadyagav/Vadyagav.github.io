@@ -1,20 +1,20 @@
 const itemClass = '.folder-list-group-item',
-      groupClass = '.folder-list-group',
-      selected = 'selected',
-      items = document.querySelectorAll(itemClass);
+    groupClass = '.folder-list-group',
+    selected = 'selected',
+    items = document.querySelectorAll(itemClass);
 
 for (let i = 0; i < items.length; i++) {
     items[i].addEventListener('click', function (event) {
         event.stopPropagation();
         const target = event.currentTarget,
-              childFolder = target.querySelector(groupClass);
+            childFolder = target.querySelector(groupClass);
 
         if (childFolder) {
             toggleFolder(childFolder);
         }
 
         if (!event.shiftKey) {
-            removeSeletionsFromItems();
+            removeSeletionsFromOtherItems();
         }
 
         selectFolder(target);
@@ -23,7 +23,7 @@ for (let i = 0; i < items.length; i++) {
 }
 
 document.addEventListener('click', function () {
-   removeSeletionsFromItems();
+    removeSeletionsFromItems();
 });
 
 function removeSeletionsFromItems() {
@@ -32,8 +32,17 @@ function removeSeletionsFromItems() {
         selectedItems[0].classList.remove(selected);
 }
 
+function removeSeletionsFromOtherItems() {
+    let selectedItems = document.getElementsByClassName(selected);
+    for (let i = 0; i < selectedItems.length; i++) {
+        if(selectedItems[i].className.indexOf(selected) < 0) {
+            selectedItems[i].classList.remove(selected);
+        }
+    }
+}
+
 function selectFolder(folder) {
-    folder.classList.add('selected');
+    folder.classList.toggle(selected);
 }
 
 function toggleFolder(folder) {
