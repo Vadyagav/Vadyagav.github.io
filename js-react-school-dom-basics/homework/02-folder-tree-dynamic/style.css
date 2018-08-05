@@ -1,0 +1,19 @@
+body {
+    user-select: none;
+}
+
+.folder-item-img {
+    vertical-align: middle;
+}
+
+.folder-list-group .folder-list-group {
+    padding-left: 25px;
+}
+
+.folder-list-group-item.selected {
+    background-color: lightblue;
+}
+
+.folder-list-group-item.selected .folder-list-group {
+    background-color: #fff;
+}
